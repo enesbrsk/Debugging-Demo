@@ -28,7 +28,7 @@
                                 </svg>
   
   
-                                <span><RouterLink to="/">Home</RouterLink></span>
+                                <span><RouterLink to="/">File Upload</RouterLink></span>
                             </a>
                         </li>
                         <li class="rounded-sm">
@@ -51,7 +51,7 @@
                                     />
                                 </svg>
   
-                                <span><RouterLink to="/about">About</RouterLink></span>
+                                <span><RouterLink to="/about">Debugging</RouterLink></span>
                             </a>
                         </li>
                         <li class="rounded-sm">
@@ -74,7 +74,7 @@
                                     />
                                 </svg>
   
-                                <span>Orders</span>
+                                <span>Information</span>
                             </a>
                         </li>
   
