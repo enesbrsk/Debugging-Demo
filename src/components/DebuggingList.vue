@@ -1,6 +1,7 @@
 <template>
-<div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
-  <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+<div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 overflow-y-auto " style="height:800px">
+
+  <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 ">
     <thead class="bg-gray-50">
         <tr>
             <th scope="col" class="px-6 py-4 font-medium text-gray-900" v-for="column in columns" :key="column">{{ column }}</th>
@@ -10,6 +11,7 @@
       <tbody class="divide-y divide-gray-100 border-t border-gray-100">
         <tr class="hover:bg-gray-50" v-for="row in rows" :key="row.id">
             <td class="px-6 py-4" v-for="cell in row" :key="cell">{{ cell }}</td>
+            
             <td class="px-6 py-4">
           <span
             class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
@@ -58,18 +60,17 @@
         </td>
         </tr>
       </tbody>
+      
     </table>
-    <div class="pagination">
-    <button @click="changePage(page - 1)" :disabled="page === 1">Önceki</button>
-    <span>{{ page }} / {{ totalPages }}</span>
-    <button @click="changePage(page + 1)" :disabled="page === totalPages">Sonraki</button>
-  </div>
+
   </div>
   </template> 
   
-  
   <script>
+
   export default {
+
+    
     data() {
       return {
         columns: ['ID', 'Error Code', 'Error Description','Status',''],
@@ -77,18 +78,30 @@
           { id: 1, firstName: 'John', lastName: 'Doe' },
           { id: 1, firstName: 'John', lastName: 'Doe' },
           { id: 1, firstName: 'John', lastName: 'Doe' },
+          { id: 1, firstName: 'Jowhn', lastName: 'Doe' },
+          { id: 1, firstName: 'Johwn', lastName: 'Doe' },
+          { id: 1, firstName: 'Johsn', lastName: 'Doe' },
           { id: 1, firstName: 'John', lastName: 'Doe' },
           { id: 1, firstName: 'John', lastName: 'Doe' },
+
           { id: 1, firstName: 'John', lastName: 'Doe' },
           { id: 1, firstName: 'John', lastName: 'Doe' },
+
+          { id: 1, firstName: 'John', lastName: 'Doe' },
+
+          { id: 1, firstName: 'John', lastName: 'Doe' },
+
           { id: 1, firstName: 'John', lastName: 'Doe' },
           { id: 1, firstName: 'John', lastName: 'Doe' },
+
           { id: 1, firstName: 'John', lastName: 'Doe' },
+          { id: 1, firstName: 'Joddhn', lastName: 'Doe' },
+          { id: 1, firstName: 'Jodhn', lastName: 'Doe' },
           { id: 1, firstName: 'John', lastName: 'Doe' },
-          { id: 1, firstName: 'John', lastName: 'Doe' },
+          { id: 1, firstName: 'Jo111hn', lastName: 'Doe' },
           // ...
         ],
-        pageSize: 4,
+        pageSize: 3,
         page: 1
       }
     },

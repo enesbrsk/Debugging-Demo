@@ -26,11 +26,14 @@ html {
   width: 90%;
   }
   .debugList { grid-area: 1 / 1 / 2 / 4; 
-    width: 90%;
+  width: 90%;
+  height: 100%;
   }
   .debugForm { grid-area: 1 / 4 / 2 / 4; 
     width: 80%;
     margin-left: 20px;
+    height: 100%;
+
   }
 #app {
   position: relative;
