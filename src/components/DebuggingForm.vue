@@ -1,28 +1,30 @@
 
 
 <template>
-    <div class="w-96 ">
-        <h4 class="text-3xl text-gray-700 mb-5">Debugging Form</h4>
-        <div class="p-10 rounded-md shadow-md bg-white" style="width: 550px;margin: 0;align-items: center;">
-            <div class="w-full text-ceenter px-4 py-3 ">
-                <label class="block mb-3 text-gray-600" for="">Error Code</label>
-                <input v-model="name" id="name" type="text"
-                    class="border border-gray-500 rounded-md inline-block  py-2 px-3 w-full text-gray-600 tracking-wider" />
-            </div>
-            <div class="w-full text-ceenter px-4 py-3 ">
-                <label class="block mb-3 text-gray-600" for="">Error Description</label>
-                <input v-model="description" id="description" type="text"
-                    class="border border-gray-500 rounded-md inline-block py-2 px-3 w-full text-gray-600 tracking-widest" />
-            </div>
+    <form id="debuggingForm">
+        <div class="w-96 ">
+            <h4 class="text-3xl text-gray-700 mb-5">Hata Ekleme Formu</h4>
+            <div class="p-10 rounded-md shadow-md bg-white" style="width: 550px;margin: 0;align-items: center;">
+                <div class="w-full text-ceenter px-4 py-3 ">
+                    <label class="block mb-3 text-gray-600" for="">Hata Kodu</label>
+                    <input v-model="name" id="debugName" type="text"
+                        class="border border-gray-500 rounded-md inline-block  py-2 px-3 w-full text-gray-600 tracking-wider" />
+                </div>
+                <div class="w-full text-ceenter px-4 py-3 ">
+                    <label class="block mb-3 text-gray-600" for="">Hata Açıklaması</label>
+                    <input v-model="description" id="debugDescription" type="text"
+                        class="border border-gray-500 rounded-md inline-block py-2 px-3 w-full text-gray-600 tracking-widest" />
+                </div>
 
-            <div>
-                <button @click="finishPayment"
-                    class="w-full text-ceenter px-4 py-3 bg-green-500 rounded-md shadow-md text-white font-semibold">
-                    Kaydet
-                </button>
+                <div>
+                    <button v-on:click.prevent="post"
+                        class="w-full text-ceenter px-4 py-3 bg-green-500 rounded-md shadow-md text-white font-semibold">
+                        Kaydet
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </template>
 
   
@@ -30,25 +32,32 @@
 <script>
 import axios from "axios";
 
+
 export default {
-    name: "Form",
-    data() {
-        return {
-            name: "",
-            email: ""
-        };
+    name: 'DebuggingForm',
+    components: {
+        Headers
     },
     methods: {
-        async submitForm() {
-            try {
-                const response = await axios.post("/api/form", {
-                    name: this.name,
-                    email: this.email
+        post: function () {
+            let formData = new FormData(document.getElementById("debuggingForm"));
+
+            // Simple POST request with a JSON body using fetch
+            const requestOptions = {
+                headers: { 'Content-Type': 'application/json' },
+                method: "POST",
+                body: JSON.stringify({
+                    debugName: document.getElementById("debugName").value,
+                    debugDescription: document.getElementById("debugDescription").value
+                })
+            };
+            fetch("https://localhost:7160/SaveDebugging", requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    (console.log(data))
+                    location.reload();
                 });
-                console.log(response.data);
-            } catch (error) {
-                console.error(error);
-            }
+
         }
     }
 };

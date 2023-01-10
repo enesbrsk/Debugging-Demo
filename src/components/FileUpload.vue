@@ -37,8 +37,13 @@
 
 <script>
 import axios from 'axios';
+import { arrayBuffer, blob, json, text } from 'stream-consumers'
 
 export default {
+  name: 'Fileupload',
+    components: {
+        Headers
+    },
   data() {
     return {
       fileStatus: false,
@@ -50,14 +55,31 @@ export default {
       this.fileStatus = true
       const file = this.$refs.fileInput.files[0];
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append('FileDetails', file);
 
       try {
         fileStatus: false
-        //const response = await axios.post('/server/upload', formData);
+        const response = await axios.post('https://localhost:7160/UploadFile', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+
+        }).then((response) => {
+
+          console.log(response);
+
+          var fileURL = window.URL.createObjectURL(new Blob([response.data.fileData]));
+          var fileLink = document.createElement('a');
+
+          fileLink.href = fileURL;
+          fileLink.setAttribute('download', `${file.name}.gml`);
+          document.body.appendChild(fileLink);
+
+          fileLink.click();
+        });
 
         console.log(file.name)
-        //console.log(response.data);
+        console.log(response.data.fileData);
       } catch (error) {
         console.error(error);
       }
