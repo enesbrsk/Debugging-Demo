@@ -74,7 +74,7 @@ export default {
 
     async getData() {
 
-      const response = await fetch("https://localhost:7160/GetAllDebugging");
+      const response = await fetch("http://localhost:8080/debugging-fix-0.0.1-SNAPSHOT/GetAllDebugging");
       const finalResponse = await response.json();
       this.listItems = finalResponse;
       console.log(this.listItems)
@@ -86,7 +86,7 @@ export default {
       headers: { 'Content-Type': 'application/json' },
       method: "DELETE"
     };
-    fetch("https://localhost:7160/DeleteDebugging?Id=" + id, requestOptions)
+    fetch("http://localhost:8080/debugging-fix-0.0.1-SNAPSHOT/DeleteDebugging?Id=" + id, requestOptions)
       .then(response => response.json())
       .then(data => {
         (console.log(data))

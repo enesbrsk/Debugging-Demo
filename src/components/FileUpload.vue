@@ -59,7 +59,7 @@ export default {
 
       try {
         fileStatus: false
-        const response = await axios.post('https://localhost:7160/UploadFile', formData, {
+        const response = await axios.post('http://localhost:8080/debugging-fix-0.0.1-SNAPSHOT/UploadFile', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           },

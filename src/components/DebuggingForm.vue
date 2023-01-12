@@ -51,7 +51,7 @@ export default {
                     debugDescription: document.getElementById("debugDescription").value
                 })
             };
-            fetch("https://localhost:7160/SaveDebugging", requestOptions)
+            fetch("http://localhost:8080/debugging-fix-0.0.1-SNAPSHOT/SaveDebugging", requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     (console.log(data))
